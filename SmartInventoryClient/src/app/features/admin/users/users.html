@@ -1,0 +1,125 @@
+<mat-drawer-container class="users-layout">
+  <!-- DRAWER -->
+  <mat-drawer #drawer position="end" class="user-drawer" mode="over">
+    <div *ngIf="selectedUser">
+      <div class="drawer-header">
+        <h2>Edit User</h2>
+        <button mat-icon-button (click)="closeDrawer()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <p class="email">{{ selectedUser.email }}</p>
+
+      <form [formGroup]="userForm" class="drawer-form">
+        
+        <mat-form-field appearance="outline" class="full-width stacked">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role" panelClass="role-panel">
+            <mat-option *ngFor="let r of roles" [value]="r">
+              <div class="role-option">
+                <span class="role-name">{{ r | titlecase }}</span>
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field
+          *ngIf="userForm.value.role === 'WarehouseManager'"
+          appearance="outline"
+          class="full-width stacked"
+        >
+          <mat-label>Warehouse</mat-label>
+          <mat-select formControlName="warehouseId">
+            <mat-option *ngFor="let w of warehouses" [value]="w.id">
+              <div class="warehouse-option">
+                <span class="name">{{ w.name | titlecase }}, </span>
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="drawer-actions">
+          <button mat-raised-button color="primary" (click)="submit()">Update User</button>
+          <button mat-stroked-button (click)="closeDrawer()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </mat-drawer>
+
+  <!-- MAIN -->
+  <mat-drawer-content>
+    <mat-card class="users-card">
+      <div class="page-header">
+        <div>
+          <h1>Users</h1>
+          <p class="subtitle">Manage user roles</p>
+        </div>
+      </div>
+
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search products</mat-label>
+        <input matInput (keyup)="applyFilter($event)" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- DESKTOP TABLE -->
+      <div class="desktop-only">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let u">{{ u.email }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+            <td mat-cell *matCellDef="let u">{{ u.role | titlecase }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="warehouseId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Warehouse</th>
+            <td mat-cell *matCellDef="let u">{{ u.warehouseId ?? 'N/A' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let u">
+              <button
+                mat-icon-button
+                matTooltip="Edit role"
+                matTooltipPosition="above"
+                (click)="openEdit(u)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+      </div>
+
+      <!-- MOBILE CARDS -->
+      <div class="mobile-only">
+        <div class="user-card" *ngFor="let u of dataSource.filteredData">
+          <strong>{{ u.email }}</strong>
+          <div class="row">
+            <span>Role: </span>
+            <span>{{ u.role | titlecase }}</span>
+          </div>
+          <div class="row">
+            <span>Warehouse: </span>
+            <span>{{ u.warehouseId ?? 'N/A' }}</span>
+          </div>
+
+          <button mat-stroked-button (click)="openEdit(u)">Edit</button>
+        </div>
+      </div>
+
+      <div *ngIf="dataSource.data.length === 0" class="empty-state">No users found.</div>
+    </mat-card>
+  </mat-drawer-content>
+</mat-drawer-container>

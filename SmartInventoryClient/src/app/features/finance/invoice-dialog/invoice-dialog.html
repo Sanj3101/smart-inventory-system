@@ -1,0 +1,99 @@
+<h2 mat-dialog-title class="dialog-title">Invoice</h2>
+
+<mat-dialog-content *ngIf="invoice" class="dialog-content">
+  <mat-card class="invoice-card">
+    <!-- Header -->
+    <div class="invoice-header">
+      <div>
+        <p class="invoice-id">Invoice #{{ invoice.invoiceNumber }}</p>
+        <p class="invoice-date">
+          {{ invoice.createdAt | date : 'medium' }}
+        </p>
+      </div>
+
+      <mat-chip color="primary" selected *ngIf="invoice.isPaid"> PAID </mat-chip>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Customer -->
+    <div class="invoice-section">
+      <p class="label">Customer</p>
+      <p class="value">{{ invoice.customer?.email }}</p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- DESKTOP TABLE -->
+    <div class="desktop-only">
+      <table mat-table [dataSource]="invoice.items" class="invoice-table">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Item</th>
+          <td mat-cell *matCellDef="let item">{{ item.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef>Qty</th>
+          <td mat-cell *matCellDef="let item">{{ item.quantity }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="unitPrice">
+          <th mat-header-cell *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let item">
+            {{ item.unitPrice | currency : 'INR' : 'symbol' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef>Total</th>
+          <td mat-cell *matCellDef="let item">
+            {{ item.total | currency : 'INR' : 'symbol' }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['name', 'quantity', 'unitPrice', 'total']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['name', 'quantity', 'unitPrice', 'total']"></tr>
+      </table>
+    </div>
+
+    <!-- MOBILE ITEMS -->
+    <div class="mobile-only">
+      <div class="item-card" *ngFor="let item of invoice.items">
+        <div class="item-header">
+          <strong>{{ item.name }}</strong>
+          <span class="item-total">
+            {{ item.total | currency : 'INR' : 'symbol' }}
+          </span>
+        </div>
+
+        <div class="item-row">
+          <span>Qty</span>
+          <span>{{ item.quantity }}</span>
+        </div>
+
+        <div class="item-row">
+          <span>Unit Price</span>
+          <span>{{ item.unitPrice | currency : 'INR' : 'symbol' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Grand Total -->
+    <div class="grand-total">
+      <span>Total</span>
+      <span>{{ invoice.grandTotal | currency : 'INR' : 'symbol' }}</span>
+    </div>
+  </mat-card>
+</mat-dialog-content>
+
+<mat-dialog-content *ngIf="!invoice">
+  <mat-card>
+    <p>Unable to load invoice.</p>
+  </mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-stroked-button (click)="close()">Close</button>
+</mat-dialog-actions>

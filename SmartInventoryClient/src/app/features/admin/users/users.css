@@ -1,0 +1,155 @@
+.users-layout {
+  height: 100vh;
+  background: #f5f7fa;
+}
+
+.users-card {
+  width: 85%;
+  margin: 24px auto;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.search-field {
+  width: 280px;
+}
+
+.subtitle {
+  color: #757575;
+  font-size: 14px;
+}
+
+/* Table */
+table {
+  width: 100%;
+}
+
+th {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+td {
+  font-size: 14px;
+}
+
+/* Drawer */
+.user-drawer {
+  width: 420px;
+  padding: 20px;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.email {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.drawer-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.drawer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.stacked {
+  margin-bottom: 4px;
+}
+
+/* Warehouse dropdown layout */
+.warehouse-option {
+  display: flex;
+  flex-direction: column;
+}
+
+.warehouse-option .name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.role-option {
+  display: flex;
+  flex-direction: column;
+}
+
+.role-option .name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Buttons */
+button {
+  text-transform: none;
+}
+
+/* Mobile cards */
+.user-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.user-card .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin: 6px 0;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .users-card {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .search-field {
+    width: 300px;
+    margin: 16px 0;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .user-drawer {
+    width: 100%;
+  }
+
+  .drawer-actions {
+    flex-direction: column;
+  }
+
+  .drawer-actions button {
+    width: 100%;
+  }
+}

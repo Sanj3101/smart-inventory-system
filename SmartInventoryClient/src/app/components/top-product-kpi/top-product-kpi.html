@@ -1,0 +1,24 @@
+<h3>Top Products (All-Time)</h3>
+<div class="kpi-grid" *ngIf="data.length; else empty">
+  <mat-card class="kpi-card" *ngFor="let p of data | slice : 0 : 3">
+    <mat-card-content>
+      <p class="kpi-label">{{ p.productName | titlecase}}</p>
+
+      <div class="kpi-values">
+        <div>
+          <span class="kpi-value">{{ p.unitsSold }}</span>
+          <span class="kpi-sub">Units</span>
+        </div>
+
+        <div>
+          <span class="kpi-value">₹{{ p.revenue | number }}</span>
+          <span class="kpi-sub">Revenue</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #empty>
+  <p class="empty-state">No top products data</p>
+</ng-template>

@@ -1,0 +1,72 @@
+.dashboard-page {
+  padding: 24px;
+}
+
+/* Header */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 4px;
+}
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* KPI Card */
+.kpi-card {
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  border-left: 4px solid transparent;
+}
+
+.kpi-card.subtle {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 8px;
+}
+
+.kpi-value {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* Status accents */
+.kpi-card.orders {
+  border-left-color: #455a64;
+}
+.kpi-card.created {
+  border-left-color: #1565c0;
+}
+.kpi-card.approved {
+  border-left-color: #2e7d32;
+}
+.kpi-card.packed {
+  border-left-color: #f9a825;
+}
+.kpi-card.shipped {
+  border-left-color: #00695c;
+}
+.kpi-card.delivered {
+  border-left-color: #1b5e20;
+}
+.kpi-card.cancelled {
+  border-left-color: #757575;
+}

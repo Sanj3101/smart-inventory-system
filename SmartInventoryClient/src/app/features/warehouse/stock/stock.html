@@ -1,0 +1,153 @@
+<mat-card class="stock-card">
+  <!-- HEADER -->
+  <div class="stock-header">
+    <div>
+      <h2>Warehouse Stock</h2>
+      <p class="subtitle">View and manage current inventory levels</p>
+    </div>
+
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search stock</mat-label>
+      <input matInput (keyup)="applyFilter($event)" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <!-- DESKTOP TABLE -->
+  <div class="desktop-only">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1" *ngIf="!isMobile">
+      <!-- Product ID -->
+      <ng-container matColumnDef="productId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let s">{{ s.productId }}</td>
+      </ng-container>
+
+      <!-- Product Name -->
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Product</th>
+        <td mat-cell *matCellDef="let s">{{ s.productName | titlecase}}</td>
+      </ng-container>
+
+      <!-- Quantity -->
+      <ng-container matColumnDef="stockQuantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity: </th>
+        <td mat-cell *matCellDef="let s">
+          <span *ngIf="editingProductId !== s.productId">
+            {{ s.stockQuantity }}
+          </span>
+
+          <mat-form-field
+            *ngIf="editingProductId === s.productId"
+            appearance="outline"
+            class="qty-input"
+          >
+            <input matInput type="number" [(ngModel)]="editedQuantity" />
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <!-- Actions -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let s">
+          <button
+            mat-icon-button
+            color="primary"
+            *ngIf="editingProductId !== s.productId"
+            (click)="startEdit(s)"
+            matTooltip="Edit"
+            matTooltipPosition="above"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            color="primary"
+            *ngIf="editingProductId === s.productId"
+            (click)="save(s.productId)"
+          >
+            <mat-icon>check</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            color="warn"
+            *ngIf="editingProductId === s.productId"
+            (click)="cancelEdit()"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+
+  <!-- MOBILE CARDS -->
+  <div class="mobile-only" *ngIf="dataSource.filteredData.length">
+    <div class="stock-card-item" *ngFor="let s of dataSource.filteredData">
+      <div class="card-header">
+        <strong>{{ s.productName }}</strong>
+        <span class="muted">#{{ s.productId }}</span>
+      </div>
+
+      <div class="card-row">
+        <span>Quantity: </span>
+
+        <!-- Normal view -->
+        <span *ngIf="editingProductId !== s.productId">
+          {{ s.stockQuantity }}
+        </span>
+
+        <!-- Edit mode -->
+        <mat-form-field
+          *ngIf="editingProductId === s.productId"
+          appearance="outline"
+          class="mobile-qty-input"
+        >
+          <input matInput type="number" [(ngModel)]="editedQuantity" />
+        </mat-form-field>
+      </div>
+
+      <div class="card-actions">
+        <button
+          mat-stroked-button
+          color="primary"
+          *ngIf="editingProductId !== s.productId"
+          (click)="startEdit(s)"
+        >
+          Edit
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          *ngIf="editingProductId === s.productId"
+          (click)="save(s.productId)"
+        >
+          Save
+        </button>
+
+        <button
+          mat-flat-button
+          color="warn"
+          *ngIf="editingProductId === s.productId"
+          (click)="cancelEdit()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="dataSource.data.length === 0" class="empty-state">No stock available.</div>
+</mat-card>

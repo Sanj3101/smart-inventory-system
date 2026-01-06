@@ -1,0 +1,7 @@
+<div class="chart-wrapper" *ngIf="data.length; else empty">
+  <canvas baseChart type="bar" [data]="chartData" [options]="chartOptions"> </canvas>
+</div>
+
+<ng-template #empty>
+  <p class="empty-state">No product sales data available</p>
+</ng-template>

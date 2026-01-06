@@ -1,0 +1,55 @@
+<div class="dashboard-page">
+  <!-- WELCOME -->
+  <div class="page-header">
+    <h2> Welcome Admin !</h2>
+    <p class="subtitle">Overview of users, inventory, and warehouse operations</p>
+  </div>
+
+  <!-- KPI GRID -->
+  <div class="kpi-grid">
+    <mat-card class="kpi-card user">
+      <p class="kpi-label">Total Users</p>
+      <p class="kpi-value">{{ totalUsers }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle admin">
+      <p class="kpi-label">Admins</p>
+      <p class="kpi-value">{{ admins }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle wm">
+      <p class="kpi-label">Warehouse Managers</p>
+      <p class="kpi-value">{{ warehouseUsers }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle fo">
+      <p class="kpi-label">Finance Officers</p>
+      <p class="kpi-value">{{ finance }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle se">
+      <p class="kpi-label">Sales Executive</p>
+      <p class="kpi-value">{{ sales }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle cust">
+      <p class="kpi-label">Customers</p>
+      <p class="kpi-value">{{ customers }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card warehouse">
+      <p class="kpi-label">Warehouses</p>
+      <p class="kpi-value">{{ totalWarehouses }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card product">
+      <p class="kpi-label">Products</p>
+      <p class="kpi-value">{{ totalProducts }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card category">
+      <p class="kpi-label">Categories</p>
+      <p class="kpi-value">{{ totalCategories }}</p>
+    </mat-card>
+  </div>
+</div>

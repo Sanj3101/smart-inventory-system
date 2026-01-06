@@ -1,0 +1,67 @@
+<mat-card class="notifications-card mat-elevation-z4">
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <button mat-icon-button (click)="goBack()" aria-label="Back">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <div>
+        <h2>Notifications</h2>
+        <span class="subtitle">{{ notifications.length }} total</span>
+      </div>
+    </div>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      class="mark-all-btn"
+      (click)="markAllRead()"
+      *ngIf="notifications.length"
+    >
+      <mat-icon>done_all</mat-icon>
+      Mark all read
+    </button>
+  </div>
+
+  <!-- Empty state -->
+  <div *ngIf="notifications.length === 0" class="empty">
+    <mat-icon>notifications_off</mat-icon>
+    <p>No notifications yet</p>
+  </div>
+
+  <!-- Notification list -->
+  <div
+    *ngFor="let n of notifications"
+    class="notification"
+    [class.unread]="!n.isRead"
+    (click)="open(n)"
+  >
+    <div class="icon">
+      <mat-icon>{{ n.isRead ? 'notifications' : 'notifications_active' }}</mat-icon>
+    </div>
+
+    <div class="content">
+      <div class="title-row">
+        <span class="title">{{ n.title }}</span>
+        <span class="dot" *ngIf="!n.isRead"></span>
+      </div>
+
+      <div class="message">{{ n.message }}</div>
+      <div class="time">
+        <mat-icon>schedule</mat-icon>
+        {{ n.createdAt | date : 'medium' }}
+      </div>
+    </div>
+
+    <button
+      *ngIf="!n.isRead"
+      mat-icon-button
+      class="mark-btn"
+      (click)="markRead(n, $event)"
+      aria-label="Mark as read"
+    >
+      <mat-icon>done</mat-icon>
+    </button>
+  </div>
+</mat-card>

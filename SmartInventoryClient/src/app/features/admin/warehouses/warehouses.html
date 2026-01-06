@@ -1,0 +1,177 @@
+<mat-drawer-container class="warehouses-layout">
+  <!-- drawer -->
+  <mat-drawer #drawer position="end" class="warehouse-drawer">
+    <div class="drawer-header">
+      <h2>
+        {{ selectedWarehouse ? 'Manage Stock' : 'Create Warehouse' }}
+      </h2>
+      <button mat-icon-button (click)="closeDrawer()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <!-- create -->
+    <div class="drawer-content">
+      <form *ngIf="!selectedWarehouse" [formGroup]="warehouseForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Location</mat-label>
+          <input matInput formControlName="location" />
+        </mat-form-field>
+
+        <div class="drawer-actions dual">
+          <button mat-stroked-button color="primary" type="button" (click)="resetWarehouseForm()">
+            Reset
+          </button>
+
+          <button mat-raised-button color="primary" type="button" (click)="createWarehouse()">
+            Create
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- stock assign -->
+    <div *ngIf="selectedWarehouse">
+      <h3>{{ selectedWarehouse.name }}</h3>
+
+      <div class="drawer-content">
+        <form [formGroup]="assignForm">
+          <div class="form-section">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Product</mat-label>
+
+              <mat-select formControlName="productId">
+                <mat-option *ngFor="let p of products" [value]="p.id">
+                  {{ p.name | titlecase}} (ID: {{ p.id }})
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="form-section">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Stock Quantity</mat-label>
+              <input matInput type="number" formControlName="stockQuantity" />
+            </mat-form-field>
+          </div>
+
+          <div class="drawer-actions dual">
+            <button mat-stroked-button color="primary" type="button" (click)="resetAssignForm()">
+              Reset
+            </button>
+
+            <button mat-raised-button color="primary" type="button" (click)="assignProduct()">
+              Assign
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <h3>Current Stock</h3>
+
+      <table mat-table [dataSource]="stockDataSource" class="mat-elevation-z1">
+        <ng-container matColumnDef="productId">
+          <th mat-header-cell *matHeaderCellDef>Product ID</th>
+          <td mat-cell *matCellDef="let s">{{ s.productId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="productName">
+          <th mat-header-cell *matHeaderCellDef>Product</th>
+          <td mat-cell *matCellDef="let s">{{ s.productName | titlecase }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="stockQuantity">
+          <th mat-header-cell *matHeaderCellDef>Stock</th>
+          <td mat-cell *matCellDef="let s">{{ s.stockQuantity }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="stockColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: stockColumns"></tr>
+      </table>
+
+      <div *ngIf="!stockDataSource.data.length" class="empty-state">No stock assigned yet.</div>
+    </div>
+  </mat-drawer>
+
+  <!-- main -->
+  <mat-drawer-content>
+    <mat-card class="warehouses-card">
+      <div class="page-header">
+        <div>
+          <h1>Warehouses</h1>
+          <p class="subtitle">Manage storage locations</p>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="openCreate()">Create Warehouse</button>
+      </div>
+
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search warehouses</mat-label>
+        <input matInput (keyup)="applyFilter($event)" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- desktop table -->
+      <div class="desktop-only">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let w">#{{ w.id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let w">{{ w.name | titlecase }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+            <td mat-cell *matCellDef="let w">{{ w.location | titlecase}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let w">
+              <button mat-stroked-button (click)="openManage(w)">Manage Stock</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator [pageSize]="5"></mat-paginator>
+      </div>
+
+      <!-- mobile -->
+      <div class="mobile-only">
+        <div class="warehouse-card" *ngFor="let w of dataSource.filteredData">
+          <!-- header -->
+          <div class="card-header">
+            <div class="warehouse-name">{{ w.name | titlecase }}</div>
+          </div>
+
+          <!-- details -->
+          <div class="card-body">
+            <div class="info-row">
+              <mat-icon class="info-icon">place</mat-icon>
+              <span class="value">{{ w.location | titlecase }}</span>
+            </div>
+          </div>
+
+          <!-- actions -->
+          <div class="card-actions">
+            <button mat-stroked-button color="primary" (click)="openManage(w)">Manage Stock</button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!dataSource.data.length" class="empty-state">No warehouses found.</div>
+    </mat-card>
+  </mat-drawer-content>
+</mat-drawer-container>

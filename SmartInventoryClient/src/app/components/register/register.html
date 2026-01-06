@@ -1,0 +1,79 @@
+<div class="register-page">
+  <mat-card class="register-card mat-elevation-z6">
+    <!-- Header -->
+    <div class="register-header">
+      <h1>Create account</h1>
+      <p>Get started in a few seconds</p>
+    </div>
+
+    <!-- Form -->
+    <form (ngSubmit)="register()" #registerForm="ngForm" class="register-form">
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" name="email" [(ngModel)]="email" required email />
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          minlength="6"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <!-- Confirm Password -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Confirm password</mat-label>
+        <input
+          matInput
+          type="password"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          required
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+
+      <!-- Error -->
+      <div class="error" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <!-- Success -->
+      <div class="success" *ngIf="success">
+        {{ success }}
+      </div>
+
+      <!-- Submit -->
+      <button
+        mat-flat-button
+        color="primary"
+        class="register-btn"
+        type="submit"
+        [disabled]="loading || !registerForm.valid"
+      >
+        <mat-progress-spinner
+          *ngIf="loading"
+          diameter="18"
+          mode="indeterminate"
+        ></mat-progress-spinner>
+
+        <span *ngIf="!loading">Create account</span>
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="register-footer">
+      <span>Already have an account?</span>
+      <a routerLink="/login">Sign in</a>
+    </div>
+  </mat-card>
+</div>

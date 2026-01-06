@@ -1,0 +1,45 @@
+<div class="dashboard-page">
+  <!-- WELCOME -->
+  <div class="page-header">
+    <h2>Welcome back 👋</h2>
+    <p class="subtitle">Track your orders and view their current status</p>
+  </div>
+
+  <!-- ORDER KPIs -->
+  <div class="kpi-grid">
+    <mat-card class="kpi-card orders">
+      <p class="kpi-label">Total Orders</p>
+      <p class="kpi-value">{{ totalOrders }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle created">
+      <p class="kpi-label">Created</p>
+      <p class="kpi-value">{{ created }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle approved">
+      <p class="kpi-label">Approved</p>
+      <p class="kpi-value">{{ approved }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle packed">
+      <p class="kpi-label">Packed</p>
+      <p class="kpi-value">{{ packed }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle shipped">
+      <p class="kpi-label">Shipped</p>
+      <p class="kpi-value">{{ shipped }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle delivered">
+      <p class="kpi-label">Delivered</p>
+      <p class="kpi-value">{{ delivered }}</p>
+    </mat-card>
+
+    <mat-card class="kpi-card subtle cancelled">
+      <p class="kpi-label">Cancelled</p>
+      <p class="kpi-value">{{ cancelled }}</p>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+.dashboard-page {
+  padding: 24px;
+}
+
+/* Header */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 4px;
+}
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* KPI Card */
+.kpi-card {
+  position: relative;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  border-left: 4px solid transparent;
+}
+
+
+.kpi-card.subtle {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 8px;
+}
+
+.kpi-value {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Total Users */
+.kpi-card.user {
+  border-left-color: #546e7a;
+}
+
+/* Admins */
+.kpi-card.admin {
+  border-left-color: #5e35b1; 
+}
+
+/* Warehouse Managers */
+.kpi-card.wm {
+  border-left-color: #00695c; 
+}
+
+/* Finance Officers */
+.kpi-card.fo {
+  border-left-color: #2e7d32;
+}
+
+/* Sales Executives */
+.kpi-card.se {
+  border-left-color: #ef6c00;
+}
+
+/* Customers */
+.kpi-card.cust {
+  border-left-color: #0277bd;
+}
+
+/* Warehouses */
+.kpi-card.warehouse {
+  border-left-color: #6d4c41;
+}
+
+/* Products */
+.kpi-card.product {
+  border-left-color: #1565c0;
+}
+
+/* Categories */
+.kpi-card.category {
+  border-left-color: #8e24aa;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}

@@ -1,0 +1,120 @@
+.cart-container {
+  padding: 24px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+mat-icon{
+  padding: 30px;
+}
+/* Header */
+.page-header {
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: 4px;
+}
+
+/* Quantity */
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qty-control span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Desktop / Mobile visibility */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Mobile cards */
+.cart-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-row.total {
+  margin-top: 8px;
+}
+
+/* Summary */
+.summary-card {
+  margin-top: 24px;
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Email */
+.email-field {
+  margin-top: 16px;
+}
+
+/* Empty */
+.empty {
+  margin-top: 48px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.empty mat-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+/* RESPONSIVE SWITCH */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .summary-card {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .actions {
+    justify-content: flex-end;
+  }
+}

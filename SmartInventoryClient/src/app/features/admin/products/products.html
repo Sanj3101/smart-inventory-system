@@ -1,0 +1,184 @@
+<mat-drawer-container class="products-layout">
+  <!-- DRAWER -->
+  <mat-drawer #drawer position="end" class="product-drawer">
+    <div class="drawer-header">
+      <h2>{{ selectedProduct ? 'Edit Product' : 'Add Product' }}</h2>
+      <button mat-icon-button (click)="closeDrawer()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <form [formGroup]="productForm">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" formControlName="price" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="categoryId">
+          <mat-option *ngFor="let c of categories" [value]="c.id">
+            {{ c.name | titlecase }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="isActive">Active</mat-checkbox>
+
+      <div class="drawer-actions">
+        <button mat-raised-button color="primary" (click)="submit()">
+          {{ selectedProduct ? 'Update' : 'Add' }}
+        </button>
+      </div>
+    </form>
+  </mat-drawer>
+
+  <!-- MAIN -->
+  <mat-drawer-content>
+    <mat-card class="products-card">
+      <div class="page-header">
+        <div>
+          <h1>Products</h1>
+          <p class="subtitle">Manage catalog items</p>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="openAdd()">Add Product</button>
+      </div>
+
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search products</mat-label>
+        <input matInput (keyup)="applyFilter($event)" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- DESKTOP TABLE -->
+      <div class="desktop-only">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
+          <!-- ID -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let p">#{{ p.id }}</td>
+          </ng-container>
+
+          <!-- NAME -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let p">{{ p.name }}</td>
+          </ng-container>
+
+          <!-- PRICE -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+            <td mat-cell *matCellDef="let p">₹{{ p.price }}</td>
+          </ng-container>
+
+          <!-- CATEGORY -->
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Category</th>
+            <td mat-cell *matCellDef="let p">{{ p.category | titlecase }}</td>
+          </ng-container>
+
+          <!-- ACTIVE -->
+          <ng-container matColumnDef="isActive">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let p">
+              <span [class.active]="p.isActive" [class.inactive]="!p.isActive">
+                {{ p.isActive ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- ACTIONS -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let p">
+              <button mat-icon-button (click)="openEdit(p)" matTooltip="Edit"
+                matTooltipPosition="above">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                color="warn"
+                *ngIf="p.isActive"
+                matTooltip="Disable"
+                matTooltipPosition="above"
+                (click)="deactivate(p.id)"
+              >
+                <mat-icon>block</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                color="primary"
+                *ngIf="!p.isActive"
+                matTooltip="Enable"
+                matTooltipPosition="above"
+                (click)="reactivate(p.id)"
+              >
+                <mat-icon>check_circle</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <!-- ROWS -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator [pageSize]="5"></mat-paginator>
+      </div>
+
+      <!-- MOBILE CARDS -->
+      <div class="mobile-only">
+        <div class="product-card" *ngFor="let p of dataSource.filteredData">
+          <!-- HEADER -->
+          <div class="card-header">
+            <div class="product-name">{{ p.name | titlecase }}</div>
+            <span class="status-pill" [ngClass]="p.isActive ? 'active' : 'inactive'">
+              {{ p.isActive ? 'Active' : 'Disabled' }}
+            </span>
+          </div>
+
+          <!-- DETAILS -->
+          <div class="card-body">
+            <div class="info-row">
+              <span class="label">Price: </span>
+              <span class="value">₹{{ p.price }}</span>
+            </div>
+
+            <div class="info-row">
+              <span class="label">Category: </span>
+              <span class="value">{{ p.category | titlecase }}</span>
+            </div>
+          </div>
+
+          <!-- ACTIONS -->
+          <div class="card-actions">
+            <button mat-stroked-button (click)="openEdit(p)">Edit</button>
+
+            <button mat-stroked-button color="warn" *ngIf="p.isActive" (click)="deactivate(p.id)">
+              Disable
+            </button>
+
+            <button
+              mat-stroked-button
+              color="primary"
+              *ngIf="!p.isActive"
+              (click)="reactivate(p.id)"
+            >
+              Enable
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!dataSource.data.length" class="empty-state">No products found</div>
+    </mat-card>
+  </mat-drawer-content>
+</mat-drawer-container>

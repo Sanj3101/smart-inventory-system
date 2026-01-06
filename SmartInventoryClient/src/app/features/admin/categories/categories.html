@@ -1,0 +1,114 @@
+<mat-drawer-container class="categories-layout">
+  <!-- DRAWER -->
+  <mat-drawer #drawer position="end" class="category-drawer" mode="over">
+    <div class="drawer-header">
+      <h2>{{ selectedCategory ? 'Edit Category' : 'Add Category' }}</h2>
+      <button mat-icon-button (click)="closeDrawer()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <form [formGroup]="categoryForm">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <div class="drawer-actions">
+        <button mat-raised-button color="primary" (click)="submit()">
+          {{ selectedCategory ? 'Update' : 'Add' }}
+        </button>
+        <button mat-stroked-button (click)="closeDrawer()">Cancel</button>
+      </div>
+    </form>
+  </mat-drawer>
+
+  <!-- MAIN -->
+  <mat-drawer-content>
+    <mat-card class="categories-card">
+      <div class="page-header">
+        <div>
+          <h1>Categories</h1>
+          <p class="subtitle">Manage product categories</p>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="openAdd()">Add Category</button>
+      </div>
+
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search categories</mat-label>
+        <input matInput (keyup)="applyFilter($event)" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- <div class="header-actions">
+          <mat-form-field appearance="outline" class="search">
+            <mat-label>Search</mat-label>
+            <input matInput [formControl]="searchControl" />
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+
+          
+        </div> -->
+
+      <!-- DESKTOP TABLE -->
+      <div class="desktop-only">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let c">{{ c.id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let c">{{ c.name | titlecase }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let c">
+              <button
+                mat-icon-button
+                matTooltip="Edit"
+                matTooltipPosition="above"
+                (click)="openEdit(c)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                color="warn"
+                matTooltip="Delete"
+                matTooltipPosition="above"
+                (click)="delete(c)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"> </mat-paginator>
+      </div>
+
+      <!-- MOBILE CARDS -->
+      <div class="mobile-only">
+        <div class="category-card" *ngFor="let c of dataSource.filteredData">
+          <strong>{{ c.name | titlecase }}</strong>
+          <span class="muted">ID: {{ c.id }}</span>
+
+          <div class="card-actions">
+            <button mat-stroked-button (click)="openEdit(c)">Edit</button>
+            <button mat-button color="warn" (click)="delete(c)">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="dataSource.data.length === 0" class="empty-state">No categories found.</div>
+    </mat-card>
+  </mat-drawer-content>
+</mat-drawer-container>

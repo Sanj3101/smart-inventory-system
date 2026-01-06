@@ -1,0 +1,178 @@
+<mat-drawer-container class="orders-layout">
+  <!-- DRAWER -->
+  <mat-drawer #drawer position="end" class="order-drawer" mode="over">
+    <div *ngIf="selectedOrder">
+      <div class="drawer-header">
+        <h2>Order #{{ selectedOrder.id }}</h2>
+        <button mat-icon-button (click)="closeDrawer()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="meta">
+        <div>
+          <div class="label">Customer:</div>
+          {{ selectedOrder.customerEmail }}
+        </div>
+        <div>
+          <div class="label">Status:</div>
+          <span [ngClass]="getStatusClass(selectedOrder.status)">
+            {{ getStatusLabel(selectedOrder.status) }}
+          </span>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h4>Items:</h4>
+      <div class="item" *ngFor="let item of selectedOrder.items">
+        <span>{{ item.productName | titlecase }} × {{ item.quantity }}</span>
+        <strong>₹{{ item.lineTotal }}</strong>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="meta">
+        <strong>Total: </strong>
+        <strong>{{ selectedOrder.totalAmount | currency : 'INR' }}</strong>
+      </div>
+
+      <div class="drawer-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="
+            selectedOrder.status === OrderStatus.Shipped ||
+            selectedOrder.status === OrderStatus.Delivered
+          "
+          (click)="viewInvoice(selectedOrder.id)"
+        >
+          View Invoice
+        </button>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <!-- MAIN -->
+  <mat-drawer-content>
+    <mat-card class="orders-card">
+      <div class="header">
+        <h2>Audit Orders</h2>
+        <p class="subtitle">View invoices and track order status</p>
+      </div>
+
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search orders</mat-label>
+        <input matInput (keyup)="applyFilter($event)" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- DESKTOP TABLE -->
+      <div class="desktop-only">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Order #</th>
+            <td mat-cell *matCellDef="let o">#{{ o.id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="customerEmail">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer</th>
+            <td mat-cell *matCellDef="let o">{{ o.customerEmail }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let o" [ngClass]="getStatusClass(o.status)">
+              {{ getStatusLabel(o.status) }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="paid">
+            <th mat-header-cell *matHeaderCellDef>Payment</th>
+            <td mat-cell *matCellDef="let o">
+              <mat-icon color="primary" *ngIf="o.isPaid">check_circle</mat-icon>
+              <mat-icon color="warn" *ngIf="!o.isPaid">pending</mat-icon>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Created At</th>
+            <td mat-cell *matCellDef="let o">
+              {{ o.createdAt | date : 'medium' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Invoice</th>
+            <td mat-cell *matCellDef="let o">
+              <button
+                mat-stroked-button
+                color="primary"
+                *ngIf="o.status === OrderStatus.Shipped || o.status === OrderStatus.Delivered"
+                (click)="viewInvoice(o.id)"
+              >
+                View
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="expand">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let o">
+              <button mat-icon-button (click)="openDetails(o)">
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+
+      <!-- MOBILE CARDS -->
+      <div class="mobile-only">
+        <div class="order-card" *ngFor="let o of dataSource.filteredData">
+          <div class="card-header">
+            <strong>#{{ o.id }}</strong>
+            <span [ngClass]="getStatusClass(o.status)">
+              {{ getStatusLabel(o.status) }}
+            </span>
+          </div>
+
+          <div class="card-row">
+            <span>Customer</span>
+            <span>{{ o.customerEmail }}</span>
+          </div>
+
+          <div class="card-row">
+            <span>Total</span>
+            <strong>₹{{ o.totalAmount }}</strong>
+          </div>
+
+          <div class="card-actions">
+            <button mat-stroked-button (click)="openDetails(o)">Details</button>
+            <button
+              mat-raised-button
+              color="primary"
+              *ngIf="o.status === OrderStatus.Shipped || o.status === OrderStatus.Delivered"
+              (click)="viewInvoice(o.id)"
+            >
+              Invoice
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!loading && dataSource.data.length === 0" class="empty-state">
+        No finance orders available.
+      </div>
+    </mat-card>
+  </mat-drawer-content>
+</mat-drawer-container>

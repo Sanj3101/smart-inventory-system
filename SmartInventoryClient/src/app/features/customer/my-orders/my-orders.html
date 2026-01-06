@@ -1,0 +1,175 @@
+<mat-drawer-container class="orders-layout">
+  <!-- MAIN -->
+  <mat-drawer-content>
+    <div class="orders-container">
+      <!-- Header -->
+      <div class="page-header">
+        <div>
+          <h1>My Orders</h1>
+          <p class="subtitle">Track and manage your orders</p>
+        </div>
+
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search orders</mat-label>
+          <input matInput (keyup)="applyFilter($event)" />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <!-- DESKTOP TABLE -->
+      <div class="desktop-only">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Order #</th>
+            <td mat-cell *matCellDef="let o">#{{ o.id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef>Customer</th>
+            <td mat-cell *matCellDef="let o">
+              {{ o.customer?.email || o.customerEmail || '—' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+            <td mat-cell *matCellDef="let o">
+              {{ o.createdAt | date : 'mediumDate' }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let o">
+              <span class="status" [ngClass]="(OrderStatus[o.status] || 'created').toLowerCase()">
+                {{ OrderStatus[o.status] || 'Created' }}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let o">
+              <button mat-stroked-button color="primary" (click)="openDetails(o)">View</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            [class.row-cancelled]="isCancelled(row)"
+          ></tr>
+        </table>
+
+        <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+        </mat-paginator>
+      </div>
+
+      <p *ngIf="!dataSource.data.length" class="empty">You haven’t placed any orders yet.</p>
+
+      <!-- MOBILE CARDS -->
+      <div class="mobile-only" *ngIf="dataSource.data.length">
+        <div class="order-card" *ngFor="let o of dataSource.filteredData">
+          <div class="card-header">
+            <strong>#{{ o.id }}</strong>
+            <span
+              class="status"
+              [class.shipped]="o.status === OrderStatus.Shipped"
+              [class.cancelled]="o.status === OrderStatus.Cancelled"
+            >
+              {{ OrderStatus[o.status] }}
+            </span>
+          </div>
+
+          <div class="card-row">
+            <span>Date</span>
+            <span>{{ o.createdAt | date : 'mediumDate' }}</span>
+          </div>
+
+          <div *ngIf="isSalesExec" class="card-row">
+            <span>Customer</span>
+            <span>{{ o.customer?.email || o.customerEmail }}</span>
+          </div>
+
+          <button mat-flat-button color="primary" (click)="openDetails(o)">View Details</button>
+        </div>
+      </div>
+
+      <p *ngIf="!dataSource.data.length" class="empty">You haven’t placed any orders yet.</p>
+    </div>
+  </mat-drawer-content>
+
+  <!-- DRAWER -->
+  <mat-drawer #drawer position="end" class="order-drawer">
+    <ng-container *ngIf="selectedOrder">
+      <div class="drawer-header">
+        <div>
+          <h2>Order #{{ selectedOrder.id }}</h2>
+          <span
+            class="status"
+            [class.shipped]="selectedOrder.status === OrderStatus.Shipped"
+            [class.cancelled]="selectedOrder.status === OrderStatus.Cancelled"
+          >
+            {{ OrderStatus[selectedOrder.status] }}
+          </span>
+        </div>
+
+        <button mat-icon-button (click)="drawer.close()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <br />
+
+      <mat-divider></mat-divider>
+
+      <section class="meta">
+        <div>
+          <span class="label">Created: </span>
+          <span>{{ selectedOrder.createdAt | date : 'mediumDate' }}</span>
+        </div>
+        <div>
+          <span class="label">Items: </span>
+          <span>{{ selectedOrder.items?.length }}</span>
+        </div>
+      </section>
+
+      <mat-divider></mat-divider>
+
+      <section>
+        <h4>Items</h4>
+        <div class="item" *ngFor="let i of selectedOrder.items">
+          <span>{{ i.productName }}</span>
+          <span>{{ i.quantity }} × ₹ {{ i.unitPrice }}</span>
+        </div>
+      </section>
+
+      <mat-divider></mat-divider>
+      <br />
+      <section class="drawer-actions">
+        <button
+          mat-stroked-button
+          color="warn"
+          class="action-btn"
+          [disabled]="!canCancel(selectedOrder)"
+          (click)="cancelFromDrawer()"
+        >
+          Cancel Order
+        </button>
+
+        <button
+          mat-flat-button
+          color="primary"
+          class="action-btn"
+          [disabled]="
+            selectedOrder.status !== OrderStatus.Shipped &&
+            selectedOrder.status !== OrderStatus.Delivered
+          "
+          (click)="viewInvoice(selectedOrder.id)"
+        >
+          View Invoice
+        </button>
+      </section>
+    </ng-container>
+  </mat-drawer>
+</mat-drawer-container>

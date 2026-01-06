@@ -1,0 +1,90 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('../pic1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 24px 22px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.667);
+  backdrop-filter: blur(10px);
+
+  box-sizing: border-box;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.login-header p {
+  margin-top: 4px;
+  font-size: 14px;
+  color: rgba(28, 59, 52, 0.6);
+}
+
+/* form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.error {
+  font-size: 13px;
+  color: #d32f2f;
+  margin-bottom: 10px;
+}
+
+.login-btn {
+  height: 44px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-footer {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.login-footer a {
+  font-weight: 500;
+}
+
+@media (min-width: 600px) {
+  .login-card {
+    padding: 28px 26px;
+  }
+
+  .login-header h1 {
+    font-size: 24px;
+  }
+}

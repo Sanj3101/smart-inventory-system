@@ -1,0 +1,157 @@
+/* base layout */
+.categories-layout {
+  height: 100vh;
+  background: #f5f7fa;
+}
+
+.categories-card {
+  width: 85%;
+  margin: 24px auto;
+  padding: 20px;
+  border-radius: 16px;
+}
+
+/* header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtitle {
+  color: #757575;
+  font-size: 14px;
+}
+
+.search-field {
+  width: 300px;
+  margin: 16px 0;
+}
+
+/* table layout */
+table {
+  width: 100%;
+}
+
+th {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+td {
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* drawer layout */
+
+.category-drawer {
+  width: 420px;
+  padding: 20px;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-header h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.drawer-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* cards for mobile view */
+
+.category-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.category-card strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.muted {
+  display: block;
+  margin-bottom: 12px;
+  color: #777;
+  font-size: 13px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #777;
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Card container */
+  .categories-card {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: 16px;
+  }
+
+  /* header layout */
+
+  .search-field {
+    width: 100%;
+  }
+
+  .header-actions button {
+    width: 100%;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .category-drawer {
+    width: 100%;
+  }
+
+  .drawer-actions {
+    flex-direction: column;
+  }
+
+  .drawer-actions button {
+    width: 100%;
+  }
+}

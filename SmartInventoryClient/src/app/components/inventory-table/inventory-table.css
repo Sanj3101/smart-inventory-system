@@ -1,0 +1,63 @@
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+.search-field{
+margin-top: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+td {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+tr.mat-header-row {
+  background-color: #f9fafb;
+}
+
+.empty-row td {
+  text-align: center;
+  padding: 24px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* STATUS PILL */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* STATUS VARIANTS */
+.status-pill.instock {
+  background-color: #ecfdf5;
+  color: #065f46;
+}
+
+.status-pill.lowstock {
+  background-color: #fff7ed;
+  color: #9a3412;
+}
+
+.status-pill.outofstock {
+  background-color: #fef2f2;
+  color: #991b1b;
+}

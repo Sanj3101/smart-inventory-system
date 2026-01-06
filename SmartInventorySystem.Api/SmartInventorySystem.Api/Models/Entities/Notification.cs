@@ -1,0 +1,28 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SmartInventorySystem.Api.Models.Entities
+{
+    public class Notification
+    {
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        public string UserId { get; set; }
+
+        [Required]
+        public string Title { get; set; }
+
+        [Required]
+        public string Message { get; set; }
+
+        public bool IsRead { get; set; } = false;
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        // optional but very useful
+        public int? OrderId { get; set; }
+        public int? ProductId { get; set; }
+    }
+}

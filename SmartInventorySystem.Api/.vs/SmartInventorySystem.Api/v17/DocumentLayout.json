@@ -1,0 +1,94 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|solutionrelative:smartinventorysystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\data\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|solutionrelative:smartinventorysystem.api\\data\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|solutionrelative:smartinventorysystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|solutionrelative:smartinventorysystem.api\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "SmartInventorySystem.Api\\appsettings.json",
+              "ToolTip": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\appsettings.json",
+              "RelativeToolTip": "SmartInventorySystem.Api\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-06T22:31:08.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataSeeder.cs",
+              "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Data\\DataSeeder.cs",
+              "RelativeDocumentMoniker": "SmartInventorySystem.Api\\Data\\DataSeeder.cs",
+              "ToolTip": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Data\\DataSeeder.cs",
+              "RelativeToolTip": "SmartInventorySystem.Api\\Data\\DataSeeder.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAgwEsAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T19:46:48.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Program.cs",
+              "RelativeDocumentMoniker": "SmartInventorySystem.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Program.cs",
+              "RelativeToolTip": "SmartInventorySystem.Api\\Program.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAUwIkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T19:29:45.902Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ExceptionMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Middleware\\ExceptionMiddleware.cs",
+              "RelativeDocumentMoniker": "SmartInventorySystem.Api\\Middleware\\ExceptionMiddleware.cs",
+              "ToolTip": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Middleware\\ExceptionMiddleware.cs",
+              "RelativeToolTip": "SmartInventorySystem.Api\\Middleware\\ExceptionMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T19:29:36.73Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

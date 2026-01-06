@@ -1,0 +1,98 @@
+/* PAGE WRAPPER */
+.reports-page {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* KPI GRID */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+/* KPI CARD */
+.kpi-card {
+  border-radius: 12px;
+}
+
+.kpi-card mat-card-content {
+  padding: 16px 18px;
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* KPI ACCENTS */
+.kpi-card.normal {
+  border-left: 4px solid #0ba3f5;
+}
+
+.kpi-card.progress {
+  border-left: 4px solid #3e6d70;
+}
+
+.kpi-card.warning {
+  border-left: 4px solid #f59e0b;
+}
+
+.kpi-card.danger {
+  border-left: 4px solid #ef4444;
+}
+
+/* REPORT CARD */
+.report-card {
+  border-radius: 14px;
+}
+
+.report-card mat-card-header {
+  padding-bottom: 8px;
+}
+
+mat-divider {
+  margin: 0 16px;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 600px) {
+  .reports-page {
+    padding: 16px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+
+  .kpi-value {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,300 @@
+.orders-layout {
+  height: 100vh;
+  background: #f5f7fa;
+}
+
+.orders-card {
+  width: 85%;
+  margin: 24px auto;
+  padding: 16px;
+}
+
+.orders-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+.header-icon {
+  font-size: 28px;
+  color: #636669;
+  padding: 10px;
+}
+
+mat-card-title {
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+
+mat-card-subtitle {
+  font-size: 14px;
+  color: #6d6d6d;
+}
+
+.tab-count {
+  margin-left: 6px;
+  background: #1976d2;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.tab-count.muted {
+  background: #9e9e9e;
+}
+
+.search-field {
+  width: 300px;
+  margin: 16px 0;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  font-size: 14px;
+}
+
+td.mat-cell {
+  vertical-align: middle;
+}
+
+button[mat-icon-button] {
+  width: 36px;
+  height: 36px;
+}
+
+.status-created {
+  color: #455a64;
+  font-weight: 600;
+}
+
+.status-delivered {
+  color: #1b5e20;
+  font-weight: 700;
+}
+
+.status-approved {
+  color: #1976d2;
+  font-weight: 600;
+}
+
+.status-packed {
+  color: #f9a825;
+  font-weight: 600;
+}
+
+.status-shipped {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.status-cancelled {
+  color: #c62828;
+  font-weight: 600;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.order-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.card-header strong {
+  font-size: 15px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.done-badge,
+.cancelled-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.done-badge {
+  color: #2e7d32;
+}
+
+.cancelled-badge {
+  color: #c62828;
+}
+
+.order-drawer {
+  width: 50%;
+  max-width: 500px;
+  padding: 16px;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-header h2 {
+  margin: 0;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+  font-size: 17px;
+}
+
+.meta .label {
+  font-size: 15px;
+  color: #888;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.drawer-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.empty-state {
+  padding: 24px;
+  text-align: center;
+  color: #777;
+}
+
+button[mat-raised-button],
+button[mat-flat-button],
+button[mat-stroked-button] {
+  min-height: 40px;
+  font-size: 14px;
+  border-radius: 22px;
+}
+
+@media (max-width: 768px) {
+  /* Layout */
+  .orders-card {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: 12px;
+  }
+
+  /* Header */
+  .orders-header {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .header-icon {
+    font-size: 22px;
+    padding: 6px;
+  }
+
+  mat-card-title {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  mat-card-subtitle {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  /* Tabs */
+  .mat-tab-label {
+    min-width: auto !important;
+    padding: 0 12px !important;
+    font-size: 14px;
+  }
+
+  .tab-count {
+    font-size: 11px;
+    padding: 1px 6px;
+  }
+
+  /* Search */
+  .search-field {
+    width: 100%;
+    margin: 12px 0 16px;
+  }
+
+  /* Toggle views */
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  /* Buttons */
+  button[mat-raised-button],
+  button[mat-flat-button],
+  button[mat-stroked-button] {
+    min-height: 42px;
+    font-size: 14px;
+    padding: 0 16px;
+  }
+
+  /* Drawer */
+  .order-drawer {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .drawer-header h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .drawer-actions {
+    flex-direction: column;
+  }
+
+  .drawer-actions button {
+    width: 100%;
+  }
+}

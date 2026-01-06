@@ -1,0 +1,54 @@
+<div class="reports-page">
+  <!-- HEADER -->
+  <header class="page-header">
+    <div class="header-text">
+      <h1 class="page-title">Warehouse Analytics & Dashboard</h1>
+      <p class="page-subtitle">Inventory health and order processing insights</p>
+    </div>
+  </header>
+
+  <!-- KPI ROW -->
+  <section class="kpi-grid">
+    <mat-card class="kpi-card normal" appearance="outlined">
+      <mat-card-content>
+        <p class="kpi-label">Total Products</p>
+        <p class="kpi-value">{{ totalProducts }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="kpi-card warning" appearance="outlined">
+      <mat-card-content>
+        <p class="kpi-label">Low Stock</p>
+        <p class="kpi-value">{{ lowStock }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="kpi-card danger" appearance="outlined">
+      <mat-card-content>
+        <p class="kpi-label">Out of Stock</p>
+        <p class="kpi-value">{{ outOfStock }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="kpi-card progress" appearance="outlined">
+      <mat-card-content>
+        <p class="kpi-label">Pending Orders</p>
+        <p class="kpi-value">{{ pendingOrders }}</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <!-- INVENTORY REPORT -->
+  <mat-card class="report-card">
+    <mat-card-header>
+      <mat-card-title>Inventory Status</mat-card-title>
+      <mat-card-subtitle> Stock availability across products </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <app-inventory-table [data]="inventory"></app-inventory-table>
+    </mat-card-content>
+  </mat-card>
+</div>

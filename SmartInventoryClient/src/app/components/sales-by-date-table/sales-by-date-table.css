@@ -1,0 +1,35 @@
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+th {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+td {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+tr.mat-header-row {
+  background-color: #f9fafb;
+}
+
+tr.mat-row:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 14px;
+  color: #6b7280;
+}

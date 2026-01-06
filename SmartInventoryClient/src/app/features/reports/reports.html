@@ -1,0 +1,116 @@
+<div class="reports-page">
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h2 class="page-title">Analytics & Reports</h2>
+    <p class="page-subtitle">Analyze sales performance across dates and products</p>
+  </div>
+
+  <!-- REPORT SECTIONS -->
+  <div class="reports-grid">
+    <!-- FILTERS -->
+    <mat-card class="filter-card">
+      <div class="range-buttons">
+        <button
+          mat-stroked-button
+          [color]="form.value.range === 'last7' ? 'primary' : ''"
+          (click)="setLast7Days()"
+        >
+          Last 7 days
+        </button>
+
+        <button
+          mat-stroked-button
+          [color]="form.value.range === 'last30' ? 'primary' : ''"
+          (click)="setLast30Days()"
+        >
+          Last 30 days
+        </button>
+
+        <button
+          mat-stroked-button
+          [color]="form.value.range === 'thisMonth' ? 'primary' : ''"
+          (click)="setThisMonth()"
+        >
+          This month
+        </button>
+
+        <button
+          mat-stroked-button
+          [color]="form.value.range === 'custom' ? 'primary' : ''"
+          (click)="setCustomRange()"
+        >
+          Custom
+        </button>
+      </div>
+
+      <form [formGroup]="form" class="filters" (ngSubmit)="applyFilters()">
+        <mat-form-field appearance="outline">
+          <mat-label>From date</mat-label>
+          <input
+            matInput
+            formControlName="from"
+            [disabled]="form.value.range !== 'custom'"
+            [matDatepicker]="fromPicker"
+            (dateChange)="setCustomRange()"
+          />
+          <mat-datepicker-toggle matSuffix [for]="fromPicker" />
+          <mat-datepicker #fromPicker />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>To date</mat-label>
+          <input
+            matInput
+            formControlName="to"
+            [disabled]="form.value.range !== 'custom'"
+            [matDatepicker]="toPicker"
+            (dateChange)="setCustomRange()"
+          />
+          <mat-datepicker-toggle matSuffix [for]="toPicker" />
+          <mat-datepicker #toPicker />
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" type="submit">Apply</button>
+      </form>
+    </mat-card>
+
+    <!-- SALES BY DATE -->
+    <mat-card class="report-card">
+      <mat-card-header>
+        <mat-card-title>Sales by Date</mat-card-title>
+        <mat-card-subtitle> Revenue and quantity trends over time </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="report-content">
+        <div class="report-chart">
+          <app-sales-by-date-chart [data]="salesByDate"></app-sales-by-date-chart>
+        </div>
+
+        <div class="report-table">
+          <app-sales-by-date-table [data]="salesByDate"></app-sales-by-date-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- SALES BY PRODUCT -->
+    <mat-card class="report-card">
+      <mat-card-header>
+        <mat-card-title>Sales by Product</mat-card-title>
+        <mat-card-subtitle> Product-wise sales performance </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="report-content">
+        <div class="report-chart">
+          <app-sales-by-product-chart [data]="salesByProduct"></app-sales-by-product-chart>
+        </div>
+
+        <div class="report-table">
+          <app-sales-by-product-table [data]="salesByProduct"></app-sales-by-product-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- KPI SUMMARY -->
+  <app-top-products-kpi [data]="topProducts"></app-top-products-kpi>
+</div>

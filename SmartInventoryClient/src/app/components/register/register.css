@@ -1,0 +1,105 @@
+/* ===== Page Wrapper ===== */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('../pic1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* ===== Card ===== */
+.register-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 24px 22px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.667);
+  backdrop-filter: blur(10px);
+
+  box-sizing: border-box;
+}
+
+/* ===== Header ===== */
+.register-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.register-header p {
+  margin-top: 4px;
+  font-size: 14px;
+  color: rgba(28, 59, 52, 0.6);
+}
+
+/* ===== Form ===== */
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+/* ===== Messages ===== */
+.error {
+  font-size: 13px;
+  color: #d32f2f;
+  margin-bottom: 10px;
+}
+
+.success {
+  font-size: 13px;
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+/* ===== Button ===== */
+.register-btn {
+  height: 44px;
+  border-radius: 8px;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ===== Footer ===== */
+.register-footer {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.register-footer a {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* ===== Tablet & Up ===== */
+@media (min-width: 600px) {
+  .register-card {
+    padding: 28px 26px;
+  }
+
+  .register-header h1 {
+    font-size: 24px;
+  }
+}

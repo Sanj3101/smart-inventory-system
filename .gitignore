@@ -1,0 +1,46 @@
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+
+# =========================
+# .NET / ASP.NET Core
+# =========================
+**/bin/
+**/obj/
+*.user
+*.suo
+*.db
+*.mdf
+*.ldf
+
+# Rider / VS
+*.DotSettings.user
+
+# =========================
+# Angular / Node
+# =========================
+node_modules/
+dist/
+.angular/
+coverage/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Optional (safe to ignore)
+# =========================
+npm-debug.log*
+yarn-error.log*

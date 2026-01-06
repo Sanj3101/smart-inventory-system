@@ -1,0 +1,46 @@
+<!-- serach field -->
+<mat-form-field appearance="outline" class="search-field">
+  <mat-label>Search inventory</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Product, status..." />
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<div class="table-wrapper">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z0">
+    <ng-container matColumnDef="product">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.productName | titlecase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Available</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.availableQuantity }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let row">
+        <span class="status-pill" [ngClass]="row.status.toLowerCase()">
+          {{ row.status }}
+        </span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="empty-row" *matNoDataRow>
+      <td [attr.colspan]="displayedColumns.length">No inventory data available</td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
