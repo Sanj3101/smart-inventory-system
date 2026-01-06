@@ -49,6 +49,15 @@ Each role has its own **permissions, dashboards, and workflows**.
 
 ---
 
+
+### 3️⃣ Database Design Diagram 
+
+
+<img width="1719" height="833" alt="image" src="https://github.com/user-attachments/assets/1b27fb5d-7da2-4b06-a602-0230bf0978a3" />
+
+---
+
+
 ### 📌 Notes for Evaluator
 
 ✔ Backend port is fixed using appsettings.json and frontned base url are harcoded sorry ! :'D
@@ -80,7 +89,7 @@ Swagger API Docs:
 ➡️ Detailed backend documentation:
 📄 [docs/BACKEND.md](docs/backend.md)
 
-### 1️⃣ Frontend
+### 2️⃣ Frontend
 ```
 cd frontend
 npm install
@@ -99,7 +108,6 @@ Unit tests are included for backend services.
 cd backend
 dotnet test
 ```
-
 
 
 
