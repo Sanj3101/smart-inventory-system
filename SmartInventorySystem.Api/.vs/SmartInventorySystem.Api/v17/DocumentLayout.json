@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|solutionrelative:smartinventorysystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\data\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|solutionrelative:smartinventorysystem.api\\data\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\services\\reports\\reportsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|solutionrelative:smartinventorysystem.api\\services\\reports\\reportsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|solutionrelative:smartinventorysystem.api\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|solutionrelative:smartinventorysystem.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8BD9F368-9BDC-409D-B5CA-55AF65C3EE39}|SmartInventorySystem.Api\\SmartInventorySystem.Api.csproj|c:\\users\\sanja\\onedrive\\documents\\chubb-sanj\\capstoneproject\\smartinventorymanagementsystem\\smartinventorysystem.api\\smartinventorysystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +46,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "ReportsService.cs",
+              "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Services\\Reports\\ReportsService.cs",
+              "RelativeDocumentMoniker": "SmartInventorySystem.Api\\Services\\Reports\\ReportsService.cs",
+              "ToolTip": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Services\\Reports\\ReportsService.cs",
+              "RelativeToolTip": "SmartInventorySystem.Api\\Services\\Reports\\ReportsService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T23:29:14.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReportsController.cs",
+              "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Controllers\\ReportsController.cs",
+              "RelativeDocumentMoniker": "SmartInventorySystem.Api\\Controllers\\ReportsController.cs",
+              "ToolTip": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Controllers\\ReportsController.cs",
+              "RelativeToolTip": "SmartInventorySystem.Api\\Controllers\\ReportsController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAwwA8AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T23:29:00.268Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\appsettings.json",
               "RelativeDocumentMoniker": "SmartInventorySystem.Api\\appsettings.json",
@@ -46,25 +78,24 @@
               "RelativeToolTip": "SmartInventorySystem.Api\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-06T22:31:08.979Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T22:31:08.979Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "DataSeeder.cs",
               "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Data\\DataSeeder.cs",
               "RelativeDocumentMoniker": "SmartInventorySystem.Api\\Data\\DataSeeder.cs",
               "ToolTip": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Data\\DataSeeder.cs",
               "RelativeToolTip": "SmartInventorySystem.Api\\Data\\DataSeeder.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAgwEsAAABDAAAAAAAAAA==",
+              "ViewState": "AgIAALcAAAAAAAAAAAAxwN0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-06T19:46:48.303Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Program.cs",
               "RelativeDocumentMoniker": "SmartInventorySystem.Api\\Program.cs",
@@ -76,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "ExceptionMiddleware.cs",
               "DocumentMoniker": "C:\\Users\\sanja\\OneDrive\\Documents\\CHUBB-Sanj\\CapstoneProject\\SmartInventoryManagementSystem\\SmartInventorySystem.Api\\SmartInventorySystem.Api\\Middleware\\ExceptionMiddleware.cs",
               "RelativeDocumentMoniker": "SmartInventorySystem.Api\\Middleware\\ExceptionMiddleware.cs",

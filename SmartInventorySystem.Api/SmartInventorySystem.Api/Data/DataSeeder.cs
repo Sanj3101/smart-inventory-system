@@ -18,9 +18,9 @@ namespace SmartInventorySystem.Api.Data
             var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-            // ---------------------------
-            // ROLES
-            // ---------------------------
+            // ===========================
+            // ROLES (IDEMPOTENT)
+            // ===========================
             string[] roles =
             {
                 "Admin",
@@ -36,9 +36,34 @@ namespace SmartInventorySystem.Api.Data
                     await roleManager.CreateAsync(new IdentityRole(role));
             }
 
-            // ---------------------------
+            // ===========================
+            // USERS (IDEMPOTENT)
+            // ===========================
+            var admin = await CreateUser(userManager, "admin@sys.com", "Admin");
+            var finance = await CreateUser(userManager, "finance@sys.com", "FinanceOfficer");
+
+            var sales1 = await CreateUser(userManager, "sales1@sys.com", "SalesExecutive");
+            var sales2 = await CreateUser(userManager, "sales2@sys.com", "SalesExecutive");
+
+            var customers = new[]
+            {
+                await CreateUser(userManager, "aarav.kumar@demo.com", "Customer"),
+                await CreateUser(userManager, "neha.sharma@demo.com", "Customer"),
+                await CreateUser(userManager, "rohit.verma@demo.com", "Customer"),
+                await CreateUser(userManager, "ananya.singh@demo.com", "Customer"),
+                await CreateUser(userManager, "rahul.mehta@demo.com", "Customer"),
+                await CreateUser(userManager, "kavya.nair@demo.com", "Customer")
+            };
+
+            // ===========================
+            // 🚨 GUARD: BUSINESS DATA
+            // ===========================
+            if (context.Orders.Any())
+                return; // 🔒 prevents duplicate seeding
+
+            // ===========================
             // WAREHOUSES
-            // ---------------------------
+            // ===========================
             var warehouses = new[]
             {
                 new Warehouse { Name = "Bangalore Warehouse", Location = "Bangalore" },
@@ -49,15 +74,7 @@ namespace SmartInventorySystem.Api.Data
             context.Warehouses.AddRange(warehouses);
             await context.SaveChangesAsync();
 
-            // ---------------------------
-            // USERS
-            // ---------------------------
-            var admin = await CreateUser(userManager, "admin@sys.com", "Admin");
-            var finance = await CreateUser(userManager, "finance@sys.com", "FinanceOfficer");
-
-            var sales1 = await CreateUser(userManager, "sales1@sys.com", "SalesExecutive");
-            var sales2 = await CreateUser(userManager, "sales2@sys.com", "SalesExecutive");
-
+            // Assign warehouse managers
             var wm1 = await CreateUser(userManager, "warehouse.blr@sys.com", "WarehouseManager");
             wm1.WarehouseId = warehouses[0].Id;
 
@@ -71,19 +88,9 @@ namespace SmartInventorySystem.Api.Data
             await userManager.UpdateAsync(wm2);
             await userManager.UpdateAsync(wm3);
 
-            var customers = new[]
-            {
-                await CreateUser(userManager, "aarav.kumar@demo.com", "Customer"),
-                await CreateUser(userManager, "neha.sharma@demo.com", "Customer"),
-                await CreateUser(userManager, "rohit.verma@demo.com", "Customer"),
-                await CreateUser(userManager, "ananya.singh@demo.com", "Customer"),
-                await CreateUser(userManager, "rahul.mehta@demo.com", "Customer"),
-                await CreateUser(userManager, "kavya.nair@demo.com", "Customer")
-            };
-
-            // ---------------------------
+            // ===========================
             // CATEGORIES
-            // ---------------------------
+            // ===========================
             var categories = new[]
             {
                 new Category { Name = "Electronics" },
@@ -97,14 +104,13 @@ namespace SmartInventorySystem.Api.Data
             context.Categories.AddRange(categories);
             await context.SaveChangesAsync();
 
-            // ---------------------------
+            // ===========================
             // PRODUCTS
-            // ---------------------------
+            // ===========================
             var products = new List<Product>
             {
                 new() { Name = "iPhone 14", Price = 70000, CategoryId = categories[0].Id },
                 new() { Name = "Samsung TV 55\"", Price = 45000, CategoryId = categories[0].Id },
-                new() { Name = "Bluetooth Headphones", Price = 2500, CategoryId = categories[0].Id, IsActive = false },
 
                 new() { Name = "Microwave Oven", Price = 12000, CategoryId = categories[1].Id },
                 new() { Name = "Refrigerator", Price = 30000, CategoryId = categories[1].Id },
@@ -125,9 +131,9 @@ namespace SmartInventorySystem.Api.Data
             context.Products.AddRange(products);
             await context.SaveChangesAsync();
 
-            // ---------------------------
-            // INVENTORY (WAREHOUSE PRODUCTS)
-            // ---------------------------
+            // ===========================
+            // INVENTORY
+            // ===========================
             var rand = new Random(42);
 
             foreach (var warehouse in warehouses)
@@ -138,7 +144,7 @@ namespace SmartInventorySystem.Api.Data
                     {
                         WarehouseId = warehouse.Id,
                         ProductId = product.Id,
-                        StockQuantity = rand.Next(3, 80),
+                        StockQuantity = rand.Next(10, 80),
                         ReservedQuantity = rand.Next(0, 5)
                     });
                 }
@@ -146,22 +152,20 @@ namespace SmartInventorySystem.Api.Data
 
             await context.SaveChangesAsync();
 
-            // ---------------------------
+            // ===========================
             // ORDERS (LAST 45 DAYS)
-            // ---------------------------
+            // ===========================
             var orders = new List<Order>();
 
             for (int i = 0; i < 28; i++)
             {
                 var customer = customers[rand.Next(customers.Length)];
-                var createdBy = rand.Next(2) == 0 ? customer : sales1;
-
                 var orderDate = DateTime.UtcNow.AddDays(-rand.Next(1, 45));
 
                 var order = new Order
                 {
                     CustomerId = customer.Id,
-                    CreatedById = createdBy.Id,
+                    CreatedById = sales1.Id, // 🔒 consistent business rule
                     WarehouseId = warehouses[rand.Next(warehouses.Length)].Id,
                     CreatedAt = orderDate,
                     Status = (OrderStatus)rand.Next(0, 5),

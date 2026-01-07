@@ -15,6 +15,7 @@ import { SalesByProductTable } from '../../components/sales-by-product-table/sal
 import { SalesByDateChart } from '../../components/sales-by-date-chart/sales-by-date-chart';
 import { SalesByProductChart } from '../../components/sales-by-product-chart/sales-by-product-chart';
 import { TopProductsKpi } from "../../components/top-product-kpi/top-product-kpi";
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-reports',
@@ -31,7 +32,8 @@ import { TopProductsKpi } from "../../components/top-product-kpi/top-product-kpi
     SalesByDateTable,
     SalesByDateChart,
     SalesByProductChart,
-    TopProductsKpi
+    TopProductsKpi,
+    MatSelectModule
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './reports.html',
@@ -43,6 +45,12 @@ export class ReportsComponent implements OnInit {
   salesByDate: any[] = [];
   salesByProduct: any[] = [];
   topProducts: any[] = [];
+
+  salesByProductRaw: any[] = [];
+  salesByProductChart: any[] = [];
+
+  topN = 10;
+
 
   constructor(
     private fb: FormBuilder,
@@ -63,7 +71,6 @@ export class ReportsComponent implements OnInit {
 
   }
 
-  /* ========= PRESETS ========= */
 
   setLast7Days() {
     const to = new Date();
@@ -103,6 +110,25 @@ export class ReportsComponent implements OnInit {
       .subscribe(d => { this.topProducts = d; this.cdr.detectChanges(); });
   }
 
+  private buildTopNChartData(data: any[]) {
+    const sorted = [...data].sort((a, b) => b.revenue - a.revenue);
+
+    const top = sorted.slice(0, this.topN);
+
+    const others = sorted.slice(this.topN).reduce(
+      (acc, p) => {
+        acc.revenue += p.revenue;
+        acc.quantity += p.quantity;
+        return acc;
+      },
+      { productName: 'Others', revenue: 0, quantity: 0 }
+    );
+
+    this.salesByProductChart =
+      sorted.length > this.topN ? [...top, others] : top;
+  }
+
+
   applyFilters() {
     const { from, to } = this.form.value;
     if (!from || !to) return;
@@ -111,6 +137,17 @@ export class ReportsComponent implements OnInit {
       .subscribe(d => { this.salesByDate = d; this.cdr.detectChanges(); });
 
     this.reportsService.getSalesByProduct(from, to)
-      .subscribe(d => { this.salesByProduct = d; this.cdr.detectChanges(); });
+      .subscribe(d => {
+        this.salesByProduct = d;
+        this.salesByProductRaw = d;
+        this.buildTopNChartData(d);
+        this.cdr.detectChanges();
+      });
   }
+
+  onTopNChange(n: number) {
+    this.topN = n;
+    this.buildTopNChartData(this.salesByProductRaw);
+  }
+
 }

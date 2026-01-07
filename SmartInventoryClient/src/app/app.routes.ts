@@ -51,7 +51,7 @@ export const routes: Routes = [
       { path: 'stock', component: Stock },
       { path: 'orders', component: WarehouseOrders },
       { path: 'dashboard', component: WarehouseReports },
-      { path: '', redirectTo: 'orders', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   },
 

@@ -97,11 +97,26 @@
       <mat-card-header>
         <mat-card-title>Sales by Product</mat-card-title>
         <mat-card-subtitle> Product-wise sales performance </mat-card-subtitle>
+        <mat-card-header class="product-header">
+          <div>
+            <mat-card-title>Sales by Product</mat-card-title>
+            <mat-card-subtitle> Product-wise sales performance </mat-card-subtitle>
+          </div>
+
+          <mat-form-field appearance="outline" class="top-n-select">
+            <mat-label>Show</mat-label>
+            <mat-select [value]="topN" (selectionChange)="onTopNChange($event.value)">
+              <mat-option [value]="5">Top 5</mat-option>
+              <mat-option [value]="10">Top 10</mat-option>
+              <mat-option [value]="20">Top 20</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-header>
       </mat-card-header>
 
       <mat-card-content class="report-content">
         <div class="report-chart">
-          <app-sales-by-product-chart [data]="salesByProduct"></app-sales-by-product-chart>
+          <app-sales-by-product-chart [data]="salesByProductChart"></app-sales-by-product-chart>
         </div>
 
         <div class="report-table">

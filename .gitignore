@@ -23,6 +23,10 @@ Thumbs.db
 *.mdf
 *.ldf
 
+# Visual Studio
+.vs/
+
+
 # Rider / VS
 *.DotSettings.user
 
